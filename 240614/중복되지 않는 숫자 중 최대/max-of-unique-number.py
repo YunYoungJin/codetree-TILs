@@ -8,7 +8,7 @@ for num in arr:
 
 for i in range(1000, 0, -1):
     if res[i] == 1:
-        print(arr[i - 1])
+        print(i)
         satisfied = True
         break
 if not satisfied:
