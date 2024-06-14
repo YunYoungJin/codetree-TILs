@@ -8,4 +8,4 @@ else:
         start = A.index(B)
         end = start + len(B)
         A = A[:start] + A[end:]
-print(A)
+    print(A)
