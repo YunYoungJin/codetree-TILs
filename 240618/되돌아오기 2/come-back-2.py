@@ -4,6 +4,7 @@ x, y = 0, 0
 
 s = input()
 t = 0
+arrival = False
 
 for item in s:
     t += 1
@@ -14,5 +15,6 @@ for item in s:
     else:
         x, y = x + dx[dir_num], y + dy[dir_num]
         if (x, y) == (0, 0):
+            arrival = True
             break
-print(t)
+print(t if arrival else -1)
