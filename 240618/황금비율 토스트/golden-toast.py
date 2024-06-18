@@ -83,11 +83,14 @@ it = dll.end()
 for _ in range(m):
     command = input()
     if command == "L":
-        it = it.prev
+        if it != dll.begin():
+            it = it.prev
     elif command == "R":
-        it = it.next
+        if it != dll.end():
+            it = it.next
     elif command == "D":
-        it = dll.erase(it)
+        if it != dll.end():
+            it = dll.erase(it)
     else:
         dll.insert(it, command.split()[1])
 
