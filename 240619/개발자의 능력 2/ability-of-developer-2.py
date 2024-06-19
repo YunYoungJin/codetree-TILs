@@ -2,18 +2,16 @@ import sys
 numbers = list(map(int, input().split()))
 
 def get_diff(i, j, k, l):
-    idxs = [i, j, k, l]
-
     group_sum = numbers[i] + numbers[j] + numbers[k] + numbers[l]
     sum3 = sum(numbers) - group_sum
 
     in_diff = sys.maxsize
-    for p in range(4):
-        for q in range(p + 1, 4):
-            sum1 = numbers[p] + numbers[q]
-            sum2 = group_sum - sum1
-            diff = max(sum1, sum2, sum3) - min(sum1, sum2, sum3)
-            in_diff = min(in_diff, diff)
+    p = i
+    for q in [j, k, l]:
+        sum1 = numbers[p] + numbers[q]
+        sum2 = group_sum - sum1
+        diff = max(sum1, sum2, sum3) - min(sum1, sum2, sum3)
+        in_diff = min(in_diff, diff)
     return in_diff
 
 min_diff = sys.maxsize
