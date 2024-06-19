@@ -3,7 +3,7 @@ n, k = map(int, input().split())
 line = [0] * 101
 for _ in range(n):
     candy, pos = map(int, input().split())
-    line[pos] = candy
+    line[pos] += candy
 
 max_cnt = 0
 for i in range(k, 101 - k):
