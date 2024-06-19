@@ -6,6 +6,10 @@ for _ in range(n):
     line[pos] += candy
 
 max_cnt = 0
+
+if k > 50:
+    max_cnt = sum(line)
+
 for i in range(k, 101 - k):
     cnt = 0
     for j in range(i - k, i + k +1):
