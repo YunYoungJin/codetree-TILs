@@ -6,11 +6,12 @@ arr = list(map(int, input().split()))
 
 min_cost = sys.maxsize
 
-for i in range(len(arr) - t + 1):
+for i in range(n):
+    if i + t > n:
+        break
     cost = 0
     for j in range(i, i + t):
-        if j >= len(arr) - 1:
-            break
         cost += abs(h - arr[j])
     min_cost = min(min_cost, cost)
+
 print(min_cost)
