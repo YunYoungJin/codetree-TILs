@@ -11,7 +11,7 @@ ans = 0
 for i in range(n):
     tmp = p_list.copy()
     tmp[i][0] //= 2
-    tmp.sort()
+    tmp.sort(key = lambda x : x[0] + x[1])
     cost = b
     cnt = 0
     for j in range(n):
