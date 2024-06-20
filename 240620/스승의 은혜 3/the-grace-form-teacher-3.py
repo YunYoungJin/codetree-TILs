@@ -1,3 +1,4 @@
+import copy
 n, b = map(int, input().split())
 
 p_list = [
@@ -9,7 +10,7 @@ ans = 0
 
 # 쿠폰 사용 대상 지정
 for i in range(n):
-    tmp = p_list.copy()
+    tmp = copy.deepcopy(p_list)
     tmp[i][0] //= 2
     tmp.sort(key = lambda x : x[0] + x[1])
     cost = b
