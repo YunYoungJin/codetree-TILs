@@ -24,4 +24,4 @@ for x in range(start, end):
         ans = min(ans, x)
         break
 
-print(x)
+print(ans)
