@@ -7,7 +7,7 @@ infos = [
     for _ in range(n)
 ]
 
-start = (infos[0][0] // 2) + 1
+start = (infos[0][0] // 2)
 end = (infos[-1][1] // (2 ** n)) + 1
 
 for x in range(start, end):
