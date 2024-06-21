@@ -6,7 +6,7 @@ ans = 0
 # 첫 번째 사람을 추가로 넣을 위치
 for i in range(n):
     # 두 번째 사람을 추가로 넣을 위치
-    for j in range(i, n):
+    for j in range(i + 1, n):
         # 두 자리가 모두 비어 있는 경우만 가능
         if seat[i] == 0 and seat[j] == 0:
 
