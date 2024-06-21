@@ -7,8 +7,10 @@ infos = [
     for _ in range(n)
 ]
 
-# x가 10이면 2를 10번 곱했을 때 10000보다 크다
-for x in range(1, 10):
+start = (infos[0][0] // 2) + 1
+end = (infos[-1][1] // (2 ** n)) + 1
+
+for x in range(start, end):
     satisfied = True
     num = x
     for a, b in infos:
