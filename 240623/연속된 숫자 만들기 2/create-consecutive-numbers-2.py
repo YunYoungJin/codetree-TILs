@@ -9,9 +9,11 @@ while not (x[2] - x[1] == 1 and x[1] - x[0] == 1):
         x[2] = x[0] + 1
     elif d2 == 2:
         x[0] = x[1] + 1
-    elif d1 < d2:
+    elif d1 == 1:
+        x[0] = x[1] + 2
+    elif d2 == 1:
         x[2] = x[1] - 2
-    elif d1 > d2:
+    else:
         x[0] = x[1] + 2
 
     x.sort()
