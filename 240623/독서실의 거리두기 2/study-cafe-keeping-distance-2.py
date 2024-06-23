@@ -10,6 +10,7 @@ if seats[0] == '0':
     for k in range(1, n):
         if seats[k] == '1':
             f_dist = k
+            f_or_b = 'f'
             tmp_dist = max(tmp_dist, f_dist)
             break
 
@@ -21,8 +22,6 @@ if seats[n - 1] == '0':
             if b_dist > tmp_dist:
                 tmp_dist = b_dist
                 f_or_b = 'b'
-            else:
-                f_or_b = 'f'
             break
 
 
