@@ -6,6 +6,12 @@ def is_cs(arr1, arr2):
     if len(arr1) < len(arr2):
         return False
 
+    elif len(arr1) == len(arr2):
+        for i in range(len(arr1)):
+            if arr1[i] != arr2[i]:
+                return False
+        return True
+            
     for i in range(len(arr1)):
         exist = True
         for j in range(len(arr2)):
