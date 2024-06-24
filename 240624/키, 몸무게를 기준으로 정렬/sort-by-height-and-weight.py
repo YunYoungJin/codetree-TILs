@@ -1,8 +1,8 @@
 n = int(input())
 
 students = []
-for _ in range(5):
-    name, h, w = input().split()
+for _ in range(n):
+    name, h, w = tuple(input().split())
     students.append((name, int(h), int(w)))
 
 students.sort(key = lambda x: (x[1], -x[2]))
