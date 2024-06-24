@@ -16,4 +16,5 @@ days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 if date2 > date1:
     print(days[(date2 - date1) % 7])
 else:
-    print(days[7 - ((date1 - date2) % 8)])
+    date2 += 7
+    print(days[(date2 - date1) % 7])
