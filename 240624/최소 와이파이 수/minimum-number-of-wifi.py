@@ -15,8 +15,7 @@ else:
         # 사람이 사는 집 찾기
         if line[pos] != 1:
             pos += 1
-            if pos == n:
-                break
+            continue
 
         if pos + m >= n - 1:
             ans += 1
