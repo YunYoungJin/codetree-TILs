@@ -1,7 +1,6 @@
 n, m = map(int, input().split())
 line = list(map(int, input().split()))
 
-
 # 사람이 한명도 살지 않으면
 if line.count(1) == 0:
     print(0)
@@ -16,9 +15,17 @@ else:
         # 사람이 사는 집 찾기
         if line[pos] != 1:
             pos += 1
-        
-        if pos + m <= n - 1:
+
+        if pos + m >= n - 1:
             ans += 1
-            pos += 2 * m + 1
+            break  
+        else:
+            ans += 1
+            pos += m
+
+            if pos + m >= n - 1:
+                break
+            else:
+                pos += m + 1
 
     print(ans)
