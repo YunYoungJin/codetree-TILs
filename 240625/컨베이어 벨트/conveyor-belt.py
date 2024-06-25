@@ -8,5 +8,5 @@ for _ in range(t):
 
 for i in range(len(belts)):
     print(belts[i], end=' ')
-    if i % 3 == 2:
+    if i % n == n - 1:
         print()
