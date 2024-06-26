@@ -18,8 +18,8 @@ max_rect = -1
 
 for i in range(n):
     for j in range(m):
-        for k in range(n):
-            for l in range(m):
+        for k in range(i, n):
+            for l in range(j, m):
                 if check_positive(i, j, k, l):
                     max_rect = max(max_rect, get_size(i, j, k, l))
 
