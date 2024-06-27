@@ -5,8 +5,10 @@ grid = [
     for _ in range(n)
 ]
 
+# 구슬이 놓인 위치 표시
 curr_beads = [[0] * n for _ in range(n)]
 
+# 초기 구슬 위치 갱신
 for _ in range(m):
     r, c = map(int, input().split())
     curr_beads[r - 1][c - 1] = 1
@@ -15,12 +17,14 @@ for _ in range(m):
 dxs = [-1, 1, 0, 0]
 dys = [0, 0, -1, 1]
 
+
 def in_range(x, y):
     return (0 <= x and x < n) and (0 <= y and y < n)
 
+
 def get_next_pos(r, c):
     x, y = r, c
-    pivot = grid[r][c]
+    pivot = 0
 
     for dx, dy in zip(dxs, dys):
         nx, ny = r + dx, c + dy
@@ -28,12 +32,14 @@ def get_next_pos(r, c):
             if grid[nx][ny] > pivot:
                 x, y = nx, ny
                 pivot = grid[nx][ny]
-    
+
     return x, y
+
 
 def move_all():
     after_move = [[0] * n for _ in range(n)]
 
+    # 현재 구슬이 있는 위치 별 움직임 체크
     for i in range(n):
         for j in range(n):
             if curr_beads[i][j] == 1:
@@ -46,6 +52,7 @@ def move_all():
                 curr_beads[i][j] = 0
             else:
                 curr_beads[i][j] = after_move[i][j]
+
 
 for _ in range(t):
     move_all()
