@@ -1,5 +1,5 @@
 import sys
-sys.setrecursionlimit(10 ** 7)
+sys.setrecursionlimit(10 ** 4)
 
 n, m = map(int, input().split())
 grid = [
