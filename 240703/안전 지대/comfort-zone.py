@@ -1,11 +1,8 @@
 n, m = map(int, input().split())
-highest = 0
-grid = []
-
-for _ in range(n):
-    floor = list(map(int, input().split()))
-    highest = max(highest, max(floor))
-    grid.append(floor)
+grid = [
+    list(map(int, input().split()))
+    for _ in range(n)
+]
 
 # 상, 하, 좌, 우
 dxs = [-1, 1, 0, 0]
@@ -33,7 +30,7 @@ def dfs(curr_x, curr_y, k):
 
 safe_zones = []
 
-for k in range(1, highest):
+for k in range(1, 100):
     visited = [[0] * m for _ in range(n)]
     zone = 0
     for i in range(n):
