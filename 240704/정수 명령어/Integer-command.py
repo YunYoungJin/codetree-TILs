@@ -1,10 +1,11 @@
 from sortedcontainers import SortedSet
 
 t = int(input())
-s = SortedSet()
 
 for _ in range(t):
     k = int(input())
+
+    s = SortedSet()
 
     for _ in range(k):
         q, x = input().split()
