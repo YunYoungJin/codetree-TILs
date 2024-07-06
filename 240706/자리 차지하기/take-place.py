@@ -18,4 +18,4 @@ for num in arr:
     else:
         break
 
-print(len(s))
+print(ans)
