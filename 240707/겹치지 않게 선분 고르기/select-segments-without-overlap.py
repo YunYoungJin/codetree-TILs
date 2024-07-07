@@ -10,11 +10,7 @@ selected = []
 def select(i):
     global ans
 
-    if n == 1:
-        ans = 1
-        return
-
-    if i + 1 == n:
+    if i == n:
         ans = max(ans, len(selected))
         return
 
