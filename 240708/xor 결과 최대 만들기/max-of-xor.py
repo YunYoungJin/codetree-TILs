@@ -10,13 +10,14 @@ tmp = []
 def select_num(idx, cnt):
     global ans
 
+    if cnt == m:
+        res = tmp[0]
+        for idx in range(1, m):
+            res = res ^ tmp[idx]
+        ans = max(ans, res)
+        return
+
     if idx == n:
-        if cnt == m:
-            res = tmp[0]
-            for idx in range(1, m):
-                res = res ^ tmp[idx]
-            ans = max(ans, res)
-            return
         return
 
     for i in range(idx, n):
