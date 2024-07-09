@@ -11,4 +11,5 @@ for i in range(1, n + 1):
 ans = -sys.maxsize
 
 for i in range(1, n - k + 2):
-    ans = max(prefix_sum[i + k - 1] - prefix_sum[i])
+    ans = max(ans, prefix_sum[i + k - 1] - prefix_sum[i - 1])
+print(ans)
