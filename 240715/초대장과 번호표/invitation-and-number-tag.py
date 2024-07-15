@@ -9,24 +9,23 @@ for _ in range(g):
     groups.append(set(group[1:]))
 
 ans = 0
-pivot = 0
 while invited:
     check = invited.popleft()
     ans += 1
     filtered_groups = []
 
     for group in groups:
-        pivot += 1
         if check in group:
             group.remove(check)
 
         if len(group) == 1:
-            invited.append(group.pop())
-        
+            next_num = group.pop()
+            if next_num not in invited:
+                invited.append(next_num)
+
         if group:
             filtered_groups.append(group)
-    
-    groups = filtered_groups
 
+    groups = filtered_groups
 
 print(ans)
