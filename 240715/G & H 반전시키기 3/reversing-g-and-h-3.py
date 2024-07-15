@@ -20,5 +20,6 @@ for i in range(n):
                 group_size = 0
     else:
         mismatched = False
+        group_size = 0
 
 print(ans)
