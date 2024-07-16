@@ -8,12 +8,15 @@ dp = [[-1] * (n + 1) for _ in range(n + 1)]
 # 0장 버렸을 때는 0점
 dp[0][0] = 0
 
-
 for i in range(n):
     for j in range(n):
-        # 둘 다 버리기
+        if dp[i][j] == -1:
+            continue
+        
+        # 둘의 카드가 같거나, 그냥 버리기로 결정했다면
         dp[i + 1][j + 1] = max(dp[i + 1][j + 1], dp[i][j])        
 
+        # B 점수가 더 낮으면 B의 카드를 버리고 점수를 얻을 수 있음
         if B[j] < A[i]:
             dp[i][j + 1] = max(dp[i][j + 1], dp[i][j] + B[j])
         
