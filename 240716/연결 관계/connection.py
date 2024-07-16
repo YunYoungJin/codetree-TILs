@@ -2,7 +2,8 @@ n, m = map(int, input().split())
 
 graph = [[] for _ in range(n)]
 
-visited = [0] * n
+visited = [False] * n
+steps = [0] * n
 
 for _ in range(m):
     v1, v2 = map(int, input().split())
@@ -11,7 +12,8 @@ for _ in range(m):
 
 
 def dfs(vertex, step):
-    visited[vertex] = step
+    visited[vertex] = True
+    steps[vertex] = step
 
     for i in graph[vertex]:
         if not visited[i]:
@@ -21,7 +23,7 @@ dfs(0, 0)
 
 is_possible = False
 for i in range(n):
-    if visited[i] >= 4:
+    if steps[i] >= 4:
         is_possible = True
         break
 
