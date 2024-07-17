@@ -33,6 +33,8 @@ for a, t, i in infos:
                     heapq.heappop(waiting_list)
                     waiting_time[next_i] = last_exit_time - next_a
                     last_exit_time += next_t
+                    if not waiting_list:
+                        last_exit_time = a + t
                 else:
                     heapq.heappush(waiting_list, (i, a, t))
                     break
