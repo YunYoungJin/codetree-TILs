@@ -13,7 +13,7 @@ while left < right:
     current_sum = arr[left] + arr[right]
 
     if abs(current_sum) < ans:
-        ans = current_sum
+        ans = abs(current_sum)
     
     if current_sum < 0:
         left += 1
