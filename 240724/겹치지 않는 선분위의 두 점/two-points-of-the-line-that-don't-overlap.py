@@ -13,9 +13,13 @@ def can_place_points(x):
 
     for i in range(m):
         a, b = segments[i]
-        for j in range(a, b + 1, x):
+        j = a
+        if j - last_pos < x:
+            j = last_pos + x
+        while j <= b:
             cnt += 1
             last_pos = j
+            j += x
 
     return cnt >= n
 
