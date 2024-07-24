@@ -6,18 +6,30 @@ segments = [
 segments.sort()
 
 left = 1
-right = segments[-1][1]
+right = segments[-1][1] - segments[0][0]
 ans = 0
 
 def is_possible(x):
     lp = segments[0][0]
+    cnt = 1
 
-    _, e = segments[1]
+    for i in range(1, n):
+        s, e = segments[i]
 
-    if segments[1][1] > segments[2][0]:
-        e = segments[2][0] - 1
+        if s - lp < x:
+            s = lp + x
+        
+        if s > e:
+            continue
+
+        if s - lp >= x:
+            cnt += 1
+            lp = s
+        
+        if cnt >= n:
+            return True
     
-    return e - lp >= x
+    return False
 
 while left <= right:
     # 가장 인접한 두 점의 거리
