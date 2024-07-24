@@ -10,7 +10,9 @@ def is_possible(x):
     time = 0
 
     for i in range(n):
-        if time + ts[i] > x:
+        if ts[i] > x:
+            return False
+        elif time + ts[i] > x:
             time = ts[i]
             cnt += 1
         else:
@@ -20,6 +22,7 @@ def is_possible(x):
 
 
 while left <= right:
+    # 레인 별 수영장 이용시간의 총합
     mid = (left + right) // 2
 
     if is_possible(mid):
