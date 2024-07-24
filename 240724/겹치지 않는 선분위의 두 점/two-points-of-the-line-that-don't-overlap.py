@@ -5,19 +5,19 @@ segments = [
 ]
 
 segments.sort()
-    
+
+
 def can_place_points(x):
     cnt = 1
     last_pos = segments[0][0]
 
     for i in range(m):
         a, b = segments[i]
-        for j in range(a, b + 1):
-            if j - last_pos >= x:
-                cnt += 1
-                last_pos = j
+        for j in range(a, b + 1, x):
+            cnt += 1
+            last_pos = j
 
-    return cnt >= n      
+    return cnt >= n
 
 
 # 두 점의 최소 거리
