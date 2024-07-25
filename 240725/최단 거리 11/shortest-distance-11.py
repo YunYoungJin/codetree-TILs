@@ -3,15 +3,18 @@ import sys
 
 INT_MAX = sys.maxsize
 n, m = map(int, input().split())
-graph = [[] for _ in range(n + 1)]
+graph = [
+    [0] * (n + 1)
+    for _ in range(n + 1)
+]
 pq = []
 dist = [INT_MAX] * (n + 1)
 
 # 그래프를 인접리스트로 표현합니다.
 for i in range(1, m + 1):
     x, y, z = map(int, input().split())
-    graph[x].append((y, z))
-    graph[y].append((x, z))
+    graph[x][y] = z
+    graph[y][x] = z
 a, b =map(int, input().split())
 
 dist[b] = 0
@@ -24,13 +27,16 @@ while pq:
     if min_dist != dist[min_index]:
         continue
 
-    for target_index, target_dist in graph[min_index]:
-        # 현재 위치에서 연결된 간선으로 가는 것이 더 작다면
-        new_dist = dist[min_index] + target_dist
-        if dist[target_index] > new_dist:
-            # 값을 갱신해주고, 우선순위 큐에 해당 정보를 넣어줍니다.
-            dist[target_index] = new_dist
-            heapq.heappush(pq, (new_dist, target_index))
+    # 최솟값에 해당하는 정점에 연결된 간선들을 보며
+    # 시작점으로부터의 최단거리 값을 갱신해줍니다.
+    for j in range(1, n + 1):
+        # 간선이 존재하지 않는 경우에는 넘어갑니다.
+        if graph[min_index][j] == 0:
+            continue
+
+        if dist[j] > dist[min_index] + graph[min_index][j]:
+            dist[j] = dist[min_index] + graph[min_index][j]
+            heapq.heappush(pq, (dist[j], j))
 
 print(dist[a])
 
@@ -38,13 +44,12 @@ x = a
 print(x, end=' ')
 
 while x != b:
-    go_next = False
     for i in range(1, n + 1):
-        for target_index, target_dist in graph[i]:
-            if dist[i] + target_dist == dist[x]:
-                x = i
-                go_next = True
-                break
-        if go_next:
+        if graph[i][x] == 0:
+            continue
+
+        if dist[i] + graph[i][x] == dist[x]:
+            x = i
             break
+    
     print(x, end=' ')
