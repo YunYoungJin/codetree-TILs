@@ -4,7 +4,6 @@ grid = [
     for _ in range(n)
 ]
 
-
 def apply_gravity(grid, n):
     for col in range(n):
         empty_row = n - 1
@@ -56,14 +55,16 @@ def rotate_90_clockwise(grid, n):
 def count_bombs(grid, n):
     return sum(grid[row][col] != 0 for row in range(n) for col in range(n))
 
+if m == 1:
+    print(0)
+else:
+    for _ in range(k):
+        while find_and_bomb(grid, n, m):
+            pass
+        grid = rotate_90_clockwise(grid, n)
+        apply_gravity(grid, n)
 
-for _ in range(k):
     while find_and_bomb(grid, n, m):
         pass
-    grid = rotate_90_clockwise(grid, n)
-    apply_gravity(grid, n)
 
-while find_and_bomb(grid, n, m):
-    pass
-
-print(count_bombs(grid, n))
+    print(count_bombs(grid, n))
