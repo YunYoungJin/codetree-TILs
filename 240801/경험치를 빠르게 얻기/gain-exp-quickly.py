@@ -8,28 +8,16 @@ quests = [(0, 0)] + [
     for _ in range(n)
 ]
 
-max_exp = sum(e for e, _ in quests)
-dp = [
-    [INT_MAX for _ in range(max_exp + 1)]
-    for _ in range(n + 1)
-]
+max_exp = max(sum(e for e, _ in quests), m)
+dp = [INT_MAX] * (max_exp + 1)
+dp[0] = 0
 
-dp[0][0] = 0
+for e, t in quests:
+    for j in range(max_exp, e -1, -1):
+        if dp[j - e] != INT_MAX:
+            dp[j] = min(dp[j], dp[j - e] + t)
 
-# i번째 퀘스트까지 고려
-# 지금까지 얻은 경험치 합이 j
-# 걸리는 최소 시간을 계산
-for i in range(1, n + 1):
-    e, t = quests[i]
-    for j in range(0, max_exp + 1):
-        if j >= e:
-            dp[i][j] = min(dp[i - 1][j - e] + t, dp[i - 1][j])
-        else:
-            dp[i][j] = dp[i - 1][j]
-
-ans = INT_MAX
-for exp in range(m, max_exp + 1):
-    ans = min(ans, dp[n][exp])
+ans = min(dp[m:])
 
 if ans == INT_MAX:
     print(-1)
