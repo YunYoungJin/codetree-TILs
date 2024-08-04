@@ -14,7 +14,7 @@ def apply_bomb():
     
     for (r, c), bomb_type in zip(bomb_positions, bomb_types):
         if bomb_type == 1:  # Pattern 1
-            pattern = [(-2, 0), (-1, 0), (0, 0), (1, 0), (-1, 0)]
+            pattern = [(-2, 0), (-1, 0), (0, 0), (1, 0), (2, 0)]
         elif bomb_type == 2:  # Pattern 2
             pattern = [(0, 0), (-1, 0), (1, 0), (0, -1), (0, 1)]
         elif bomb_type == 3:  # Pattern 3
