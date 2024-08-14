@@ -1,14 +1,26 @@
-from collections import deque
+import sys
+from collections import deque, defaultdict
+input = sys.stdin.readline
 
 
-def simulate(n, beads):
+# 입력 처리 및 시뮬레이션
+t = int(input())
+
+for _ in range(t):
+    n, m = map(int, input().split())
+    beads = deque()
+    cnt_map = [[0] * n for _ in range(n)]
+    for _ in range(m):
+        x, y, d = input().split()
+        x, y = int(x) - 1, int(y) - 1
+        beads.append((x, y, d))
+        cnt_map[x][y] = 1
+
     direction_map = {'U': (-1, 0), 'D': (1, 0), 'L': (0, -1), 'R': (0, 1)}
     opposite_direction = {'U': 'D', 'D': 'U', 'L': 'R', 'R': 'L'}
 
     for _ in range(2 * n):
         cnt = len(beads)
-        visited = set()
-        collision_cnt = 0
 
         for _ in range(cnt):
             curr_x, curr_y, d = beads.popleft()
@@ -20,35 +32,23 @@ def simulate(n, beads):
                 # 벽에 부딪히면 방향 반전
                 d = opposite_direction[d]
                 new_x, new_y = curr_x, curr_y
-
-            if (new_x, new_y) not in visited:
-                visited.add((new_x, new_y))
-                beads.append((new_x, new_y, d))
             else:
-                collision_cnt += 1
+                cnt_map[curr_x][curr_y] -= 1
+                cnt_map[new_x][new_y] += 1
 
-        check = 0
-        while beads and check < collision_cnt:
+            beads.append((new_x, new_y, d))
+
+        collision = set()
+
+        for _ in range(cnt):
             x, y, d = beads.popleft()
-            if (x, y) in visited:
-                check += 1
+            if cnt_map[x][y] >= 2:
+                collision.add((x, y))
             else:
                 beads.append((x, y, d))
+        
+        if collision:
+            for i, j in collision:
+                cnt_map[i][j] = 0
 
-    # 남아있는 구슬의 수 계산
-    remaining_beads = len(beads)
-    return remaining_beads
-
-
-# 입력 처리 및 시뮬레이션
-t = int(input())
-
-for _ in range(t):
-    n, m = map(int, input().split())
-    beads = deque()
-    for _ in range(m):
-        x, y, d = input().split()
-        x, y = int(x) - 1, int(y) - 1
-        beads.append((x, y, d))
-
-    print(simulate(n, beads))
+    print(len(beads))
