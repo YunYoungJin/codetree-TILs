@@ -19,7 +19,6 @@ for _ in range(t):
 
     for time in range(1, 4002):
         moved_map = defaultdict(list)
-        positions = set()
 
         for _ in range(len(beads)):
             w, idx, x, y, d = beads.popleft()
@@ -29,12 +28,11 @@ for _ in range(t):
 
             if -2000 <= new_x <= 2000 and -2000 <= new_y <= 2000:
                 heapq.heappush(moved_map[(new_x, new_y)], (-w, -idx, d))
-                positions.add((new_x, new_y))
 
-        for pos in positions:
-            if len(moved_map[pos]) >= 2:
+        for key in moved_map:
+            if len(moved_map[key]) >= 2:
                 ans = time
-            w, idx, d = heapq.heappop(moved_map[pos])
-            beads.append((-w, -idx, pos[0], pos[1], d))
+            w, idx, d = heapq.heappop(moved_map[key])
+            beads.append((-w, -idx, key[0], key[1], d))
 
     print(ans)
