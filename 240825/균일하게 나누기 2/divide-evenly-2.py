@@ -16,10 +16,8 @@ y_coords = sorted(y_coords)
 
 ans = sys.maxsize
 
-for i in range(len(x_coords) - 1):
-    for j in range(len(y_coords) - 1):
-        a = (x_coords[i] + x_coords[i + 1]) // 2
-        b = (y_coords[j] + y_coords[j + 1]) // 2
+for a in range(x_coords[0] - 1, x_coords[-1], 2):
+    for b in range(y_coords[0] - 1, y_coords[-1], 2):
 
         p1, p2, p3, p4 = 0, 0, 0, 0
 
