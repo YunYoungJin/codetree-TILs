@@ -1,36 +1,32 @@
 import sys
 from sortedcontainers import SortedSet
+
 input = sys.stdin.readline
 
 c, n = map(int, input().split())
-red_stones = []
+red_stones = SortedSet()
 black_stones = []
 
 for _ in range(c):
-    red_stones.append(int(input()))
+    red_stones.add(int(input()))
 
 for _ in range(n):
     a, b = map(int, input().split())
     black_stones.append((a, b))
 
-red_stones.sort()
-black_stones.sort(key=lambda x: x[1])
+black_stones.sort(key=lambda x: (x[1], -x[0]))
 
 ans = 0
-not_used = SortedSet(range(c))
 
 for a, b in black_stones:
-    if len(not_used) == 0:
+    # 빨간 돌이 남아있지 않으면 멈춤
+    if not red_stones:
         break
 
-    red_idx = not_used[0]
+    red_idx = red_stones.bisect_left(a)
 
-    while red_idx < c and red_stones[red_idx] < a:
-        red_idx += 1
-    
-    if red_idx < c and a <= red_stones[red_idx] <= b and red_idx in not_used:
+    if red_idx < len(red_stones) and a <= red_stones[red_idx] <= b:
         ans += 1
-        not_used.remove(red_idx)
-        red_idx += 1
+        red_stones.pop(red_idx)
 
 print(ans)
