@@ -9,8 +9,8 @@ if m > n + 1:
     print(0)
     sys.exit(0)
 
-L = [-1] * (m + 2)
-R = [-1] * (m + 2)
+L = [0] * (m + 2)
+R = [0] * (m + 2)
 
 ai = 1
 for bi in range(1, m + 1):
