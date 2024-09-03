@@ -12,7 +12,7 @@ for _ in range(m):
     graph[a].append((b, v))
     graph[b].append((a, v))
 
-def dijkstra(start):
+def dijkstra(start, graph):
     distance = [INF] * (n + 1)
     distance[start] = 0
     pq = [(0, start)]
@@ -34,24 +34,29 @@ def dijkstra(start):
             elif distance_via_node == distance[neighbor]:
                 if parents[neighbor] == 1 or parents[neighbor] > current_node:
                     parents[neighbor] = current_node
-    
+
     return distance, parents
 
-for i in range(1, n):
-    graph[i].sort()
+def find_used_edges(parents, end_node):
+    queue = [end_node]
+    used_edges = set()
 
-dist, path = dijkstra(1)
-visited = [False] * (n + 1)
+    while queue:
+        current = queue.pop()
+        if (current, parents[current]) not in used_edges:
+            used_edges.add((current, parents[current]))
+            queue.append(parents[current])
 
-x = n
-while x != 1:
-    x = path[x]
-    visited[x] = True
+    return used_edges
 
-for i in range(2, n):
-    if visited[i]:
-        graph[i].clear()
+dist_a, parents_a = dijkstra(1, graph)
+used_edges = find_used_edges(parents_a, n)
 
-new_dist, _ = dijkstra(1)
+new_graph = [[] for _ in range(n + 1)]
+for u in range(1, n + 1):
+    for v, w in graph[u]:
+        if (u, v) not in used_edges and (v, u) not in used_edges:
+            new_graph[u].append((v, w))
 
+new_dist, _ = dijkstra(1, new_graph)
 print(new_dist[n] if new_dist[n] != INF else -1)
