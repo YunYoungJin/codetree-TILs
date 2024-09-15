@@ -57,4 +57,5 @@ else:
     trace(1, -1, 0)
 
 print(max(dp[1][0], dp[1][1]))
+result_nodes.sort()
 print(*result_nodes)
