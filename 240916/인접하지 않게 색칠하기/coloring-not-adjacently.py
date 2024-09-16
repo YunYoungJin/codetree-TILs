@@ -38,8 +38,8 @@ def dfs(node, parent):
             # 현재 노드를 색칠하는 경우
             for i in range(1, k + 1):
                 temp_dp[1][i] = dp[node][0][i - 1] + values[node]
-                for j in range(i):
-                    temp_dp[1][i] = max(temp_dp[1][i], dp[node][1][i - j - 1] + dp[child][0][j])
+                for j in range(i + 1):
+                    temp_dp[1][i] = max(temp_dp[1][i], dp[node][1][i - j] + dp[child][0][j])
 
             # dp 업데이트
             for color in range(2):
