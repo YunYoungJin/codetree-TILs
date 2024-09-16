@@ -10,35 +10,22 @@ for _ in range(n - 1):
     graph[a].append(b)
     graph[b].append(a)
 
-visited = [False] * (n + 1)
-dp = [-1] * (n + 1)  # 
 
-# 서브트리에서 가장 멀리 있는 리프노드까지의 거리
-
-def calc_depth(node, parent):
+def dfs(node, parent):
     max_depth = 0
-
-    for child in graph[node]:
-        if child != parent:
-            child_depth = calc_depth(child, node)
-            max_depth = max(max_depth, child_depth + 1)
-    
-    dp[node] = max_depth
-
-    return max_depth
-
-calc_depth(s, -1)
-
-# DFS를 통해 이동해야 할 최소 거리를 계산
-def find_min_distance(node, parent):
     total_distance = 0
+
     for child in graph[node]:
         if child != parent:
-            if dp[child] >= d:
-                total_distance += find_min_distance(child, node) + 1
+            child_depth, child_distance = dfs(child, node)
+            max_depth = max(max_depth, child_depth + 1)
+            # dp 배열을 사용하지 않고 필요할 때만 거리 계산
+            if child_depth >= d:
+                total_distance += child_distance + 1
 
-    return total_distance
+    return max_depth, total_distance
 
 # 최종 이동 거리 계산
-result = find_min_distance(s, -1)
+_, result = dfs(s, -1)
+
 print(2 * result)
