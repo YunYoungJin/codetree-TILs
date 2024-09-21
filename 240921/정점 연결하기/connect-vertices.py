@@ -1,18 +1,15 @@
 n = int(input())
 parent = list(range(n + 1))
-rank = [0] * (n + 1)
 
 def union(x, y):
     rootX = find(x)
     rootY = find(y)
 
-    if rank[rootX] > rank[rootY]:
-        parent[rootY] = rootX
-    elif rank[rootX] < rank[rootY]:
-        parent[rootX] = rootY
-    else:
-        parent[rootY] = rootX
-        rank[rootX] += 1
+    if rootX != rootY:
+        if rootX < rootY:
+            parent[rootY] = rootX
+        else:
+            parent[rootX] = rootY
 
 
 def find(x):
@@ -27,11 +24,7 @@ for _ in range(n - 2):
     union(a, b)
 
 
-components = set(parent[1:])
-components = list(components)
+components = list(set(find(i) for i in range(1, n + 1)))
+components.sort()
 
-comp1 = min(components[0], components[1])
-comp2 = max(components[0], components[1])
-
-# 두 대표 정점을 연결하는 간선 출력
-print(comp1, comp2)
+print(*components)
