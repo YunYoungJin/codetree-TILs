@@ -3,6 +3,8 @@ uf = list(range(n + 1))
 ans = 0
 
 def union(x, y):
+    global ans
+
     X = find(x)
     Y = find(y)
 
