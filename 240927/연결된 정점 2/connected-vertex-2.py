@@ -9,9 +9,11 @@ def union(x, y):
     if size[X] < size[Y]:
         uf[X] = Y
         size[Y] += size[X]
+        size[X] = size[Y]
     else:
         uf[Y] = X
         size[X] += size[Y]
+        size[Y] = size[X]
 
     
 def find(x):
