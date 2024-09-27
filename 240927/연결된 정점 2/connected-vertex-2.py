@@ -27,4 +27,4 @@ for _ in range(n):
     a, b = map(int, input().split())
     union(a, b)
     
-    print(max(size[a], size[b]))
+    print(max(size[find(a)], size[find(b)]))
